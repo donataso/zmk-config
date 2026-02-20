@@ -5,7 +5,8 @@
  */
 
 #include <dt-bindings/zmk/matrix_transform.h>
-#include <sofle_half_layout.dtsi>
+#include "sofle_half_layout.dtsi"
+
 
 &sofle_half_layout {
     transform = <&default_transform>;
