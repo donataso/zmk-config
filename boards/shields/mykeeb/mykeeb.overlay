@@ -1,0 +1,138 @@
+#include "mykeeb_physical_layout.dtsi"
+#include "mykeeb_matrix_transform.dtsi"
+
+/ {
+    chosen {
+        zmk,kscan = &kscan0;
+        zmk,physical-layout = &physical_layout;
+    };
+
+    kscan0: kscan_composite {
+        compatible = "zmk,kscan-composite";
+        rows = <7>;
+        columns = <15>;
+        label = "KSCAN";
+        
+        matrix {
+            kscan = <&kscan_matrix>;
+        };
+        
+        direct {
+            kscan = <&kscan_direct>;
+            row-offset = <6>;
+        };
+    };
+
+    kscan_matrix: kscan_matrix {
+        compatible = "zmk,kscan-gpio-matrix";
+        diode-direction = "col2row";
+        // wakeup-source;
+        
+        row-gpios
+            = <&gpio0 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&gpio1 15 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&gpio1 13 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&gpio1 11 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&gpio0 9 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&gpio0 10 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            ;
+        
+        col-gpios
+            = <&shift_reg 8 GPIO_ACTIVE_HIGH>
+            , <&shift_reg 15 GPIO_ACTIVE_HIGH>
+            , <&shift_reg 14 GPIO_ACTIVE_HIGH>
+            , <&shift_reg 13 GPIO_ACTIVE_HIGH>
+            , <&shift_reg 12 GPIO_ACTIVE_HIGH>
+            , <&shift_reg 11 GPIO_ACTIVE_HIGH>
+            , <&shift_reg 10 GPIO_ACTIVE_HIGH>
+            , <&shift_reg 9 GPIO_ACTIVE_HIGH>
+            , <&shift_reg 7 GPIO_ACTIVE_HIGH>
+            , <&shift_reg 6 GPIO_ACTIVE_HIGH>
+            , <&shift_reg 5 GPIO_ACTIVE_HIGH>
+            , <&shift_reg 4 GPIO_ACTIVE_HIGH>
+            , <&shift_reg 3 GPIO_ACTIVE_HIGH>
+            , <&shift_reg 2 GPIO_ACTIVE_HIGH>
+            , <&shift_reg 1 GPIO_ACTIVE_HIGH>
+            ;
+    };
+
+    kscan_direct: kscan_direct {
+        compatible = "zmk,kscan-gpio-direct";
+        input-gpios = <&gpio0 11 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>, <&gpio0 22 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>;
+        // wakeup-source;
+    };
+
+    // soft_off_wakers {
+    //     compatible = "zmk,soft-off-wakeup-sources";
+    //     wakeup-sources = <&kscan0>;
+    // };
+    
+    left_encoder: encoder_left {
+        compatible = "alps,ec11";
+        a-gpios = <&gpio1 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        b-gpios = <&gpio0 24 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        steps = <80>;
+        status = "okay";
+    };
+    
+    right_encoder: encoder_right {
+        compatible = "alps,ec11";
+        a-gpios = <&gpio0 17 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        b-gpios = <&gpio0 20 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        steps = <80>;
+        status = "okay";
+    };
+    
+    sensors: sensors {
+        compatible = "zmk,keymap-sensors";
+        sensors = <&left_encoder>, <&right_encoder>;
+        triggers-per-rotation = <20>;
+    };
+
+    // vbatt: vbatt {
+    //     compatible = "zmk,battery-voltage-divider";
+    //     io-channels = <&adc 2>;
+    //     output-ohms = <2000000>;
+    //     full-ohms = <(2000000 + 806000)>;
+    // };
+};
+
+&adc {
+	status = "okay";
+};
+
+
+&spi1 {
+    compatible = "nordic,nrf-spim";
+    status = "okay";
+    
+    pinctrl-0 = <&spi1_default>;
+    pinctrl-1 = <&spi1_sleep>;
+    pinctrl-names = "default", "sleep";
+    cs-gpios = <&gpio1 1 GPIO_ACTIVE_LOW>;
+    
+    shift_reg: 595@0 {
+        compatible = "zmk,gpio-595";
+        status = "okay";
+        gpio-controller;
+        spi-max-frequency = <200000>;
+        #gpio-cells = <2>;
+        reg = <0>;
+        ngpios = <16>;
+    };
+};
+
+&pinctrl {
+    spi1_default: spi1_default {
+        group1 {
+            psels = <NRF_PSEL(SPIM_MOSI, 1, 7)>, <NRF_PSEL(SPIM_SCK, 1, 2)>;
+        };
+    };
+
+    spi1_sleep: spi1_sleep {
+        group1 {
+            psels = <NRF_PSEL(SPIM_MOSI, 1, 7)>, <NRF_PSEL(SPIM_SCK, 1, 2)>;
+            low-power-enable;
+        };
+    };
+};

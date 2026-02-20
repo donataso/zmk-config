@@ -1,0 +1,104 @@
+#include <physical_layouts.dtsi>
+
+/ {
+    physical_layout: physical_layout {
+        compatible = "zmk,physical-layout";
+        display-name = "ISO TKL";
+        kscan = <&kscan0>;
+        transform = <&default_transform>;
+        keys  //                     w   h    x    y     rot    rx    ry
+            = <&key_physical_attrs 100 100    0    0       0     0     0>  // 0: ESC
+            , <&key_physical_attrs 100 100  200    0       0     0     0>  // 1: F1
+            , <&key_physical_attrs 100 100  300    0       0     0     0>  // 2: F2
+            , <&key_physical_attrs 100 100  400    0       0     0     0>  // 3: F3
+            , <&key_physical_attrs 100 100  500    0       0     0     0>  // 4: F4
+            , <&key_physical_attrs 100 100  650    0       0     0     0>  // 5: F5
+            , <&key_physical_attrs 100 100  750    0       0     0     0>  // 6: F6
+            , <&key_physical_attrs 100 100  850    0       0     0     0>  // 7: F7
+            , <&key_physical_attrs 100 100  950    0       0     0     0>  // 8: F8
+            , <&key_physical_attrs 100 100 1100    0       0     0     0>  // 9: F9
+            , <&key_physical_attrs 100 100 1200    0       0     0     0>  // 10: F10
+            , <&key_physical_attrs 100 100 1300    0       0     0     0>  // 11: F11
+            , <&key_physical_attrs 100 100 1400    0       0     0     0>  // 12: F12
+            , <&key_physical_attrs 100 100 1500  100       0     0     0>  // 13: INS
+            , <&key_physical_attrs 100 100 1600  100       0     0     0>  // 14: HOME
+            , <&key_physical_attrs 100 100    0  100       0     0     0>  // 15: `
+            , <&key_physical_attrs 100 100  100  100       0     0     0>  // 16: 1
+            , <&key_physical_attrs 100 100  200  100       0     0     0>  // 17: 2
+            , <&key_physical_attrs 100 100  300  100       0     0     0>  // 18: 3
+            , <&key_physical_attrs 100 100  400  100       0     0     0>  // 19: 4
+            , <&key_physical_attrs 100 100  500  100       0     0     0>  // 20: 5
+            , <&key_physical_attrs 100 100  600  100       0     0     0>  // 21: 6
+            , <&key_physical_attrs 100 100  700  100       0     0     0>  // 22: 7
+            , <&key_physical_attrs 100 100  800  100       0     0     0>  // 23: 8
+            , <&key_physical_attrs 100 100  900  100       0     0     0>  // 24: 9
+            , <&key_physical_attrs 100 100 1000  100       0     0     0>  // 25: 0
+            , <&key_physical_attrs 100 100 1100  100       0     0     0>  // 26: -
+            , <&key_physical_attrs 100 100 1200  100       0     0     0>  // 27: =
+            , <&key_physical_attrs 200 100 1300  100       0     0     0>  // 28: BSPC
+            , <&key_physical_attrs 100 100 1700  100       0     0     0>  // 29: PGUP
+            , <&key_physical_attrs 150 100    0  200       0     0     0>  // 30: TAB
+            , <&key_physical_attrs 100 100  150  200       0     0     0>  // 31: Q
+            , <&key_physical_attrs 100 100  250  200       0     0     0>  // 32: W
+            , <&key_physical_attrs 100 100  350  200       0     0     0>  // 33: E
+            , <&key_physical_attrs 100 100  450  200       0     0     0>  // 34: R
+            , <&key_physical_attrs 100 100  550  200       0     0     0>  // 35: T
+            , <&key_physical_attrs 100 100  650  200       0     0     0>  // 36: Y
+            , <&key_physical_attrs 100 100  750  200       0     0     0>  // 37: U
+            , <&key_physical_attrs 100 100  850  200       0     0     0>  // 38: I
+            , <&key_physical_attrs 100 100  950  200       0     0     0>  // 39: O
+            , <&key_physical_attrs 100 100 1050  200       0     0     0>  // 40: P
+            , <&key_physical_attrs 100 100 1150  200       0     0     0>  // 41: [
+            , <&key_physical_attrs 100 100 1250  200       0     0     0>  // 42: ]
+            , <&key_physical_attrs 125 200 1375  200       0     0     0>  // 43: RET
+            , <&key_physical_attrs 100 100 1500  200       0     0     0>  // 44: DEL
+            , <&key_physical_attrs 175 100    0  300       0     0     0>  // 45: CAPS
+            , <&key_physical_attrs 100 100  175  300       0     0     0>  // 46: A
+            , <&key_physical_attrs 100 100  275  300       0     0     0>  // 47: S
+            , <&key_physical_attrs 100 100  375  300       0     0     0>  // 48: D
+            , <&key_physical_attrs 100 100  475  300       0     0     0>  // 49: F
+            , <&key_physical_attrs 100 100  575  300       0     0     0>  // 50: G
+            , <&key_physical_attrs 100 100  675  300       0     0     0>  // 51: H
+            , <&key_physical_attrs 100 100  775  300       0     0     0>  // 52: J
+            , <&key_physical_attrs 100 100  875  300       0     0     0>  // 53: K
+            , <&key_physical_attrs 100 100  975  300       0     0     0>  // 54: L
+            , <&key_physical_attrs 100 100 1075  300       0     0     0>  // 55: ;
+            , <&key_physical_attrs 100 100 1175  300       0     0     0>  // 56: '
+            , <&key_physical_attrs 100 100 1275  300       0     0     0>  // 57: NUHS
+            , <&key_physical_attrs 100 100 1600  200       0     0     0>  // 58: END
+            , <&key_physical_attrs 100 100 1700  200       0     0     0>  // 59: PGDN
+            , <&key_physical_attrs 125 100    0  400       0     0     0>  // 60: LSHFT
+            , <&key_physical_attrs 100 100  125  400       0     0     0>  // 61: NUBS
+            , <&key_physical_attrs 100 100  225  400       0     0     0>  // 62: Z
+            , <&key_physical_attrs 100 100  325  400       0     0     0>  // 63: X
+            , <&key_physical_attrs 100 100  425  400       0     0     0>  // 64: C
+            , <&key_physical_attrs 100 100  525  400       0     0     0>  // 65: V
+            , <&key_physical_attrs 100 100  625  400       0     0     0>  // 66: B
+            , <&key_physical_attrs 100 100  725  400       0     0     0>  // 67: N
+            , <&key_physical_attrs 100 100  825  400       0     0     0>  // 68: M
+            , <&key_physical_attrs 100 100  925  400       0     0     0>  // 69: ,
+            , <&key_physical_attrs 100 100 1025  400       0     0     0>  // 70: .
+            , <&key_physical_attrs 100 100 1125  400       0     0     0>  // 71: /
+            , <&key_physical_attrs 275 100 1225  400       0     0     0>  // 72: RSHFT
+            , <&key_physical_attrs   0   0    0    0       0     0     0>  // 73: none
+            , <&key_physical_attrs   0   0    0    0       0     0     0>  // 74: none
+            , <&key_physical_attrs 125 100    0  500       0     0     0>  // 75: LCTRL
+            , <&key_physical_attrs 125 100  125  500       0     0     0>  // 76: LGUI
+            , <&key_physical_attrs 125 100  250  500       0     0     0>  // 77: LALT
+            , <&key_physical_attrs   0   0    0    0       0     0     0>  // 78: none
+            , <&key_physical_attrs   0   0    0    0       0     0     0>  // 79: none
+            , <&key_physical_attrs 625 100  375  500       0     0     0>  // 80: SPACE
+            , <&key_physical_attrs   0   0    0    0       0     0     0>  // 81: none
+            , <&key_physical_attrs 125 100 1000  500       0     0     0>  // 82: mo 1
+            , <&key_physical_attrs 125 100 1125  500       0     0     0>  // 83: mo 2
+            , <&key_physical_attrs 125 100 1250  500       0     0     0>  // 84: RCTRL
+            , <&key_physical_attrs 125 100 1375  500       0     0     0>  // 85: RALT
+            , <&key_physical_attrs 100 100 1500  500       0     0     0>  // 86: LEFT
+            , <&key_physical_attrs 100 100 1600  500       0     0     0>  // 87: DOWN
+            , <&key_physical_attrs 100 100 1700  500       0     0     0>  // 88: RIGHT
+            , <&key_physical_attrs 100 100 1600  400       0     0     0>  // 89: UP
+            , <&key_physical_attrs 100 100 0     600       0     0     0>  // 90: encoder 1 switch
+            , <&key_physical_attrs 100 100 100   600       0     0     0>  // 91: encoder 2 switch
+            ;
+    };
+};
